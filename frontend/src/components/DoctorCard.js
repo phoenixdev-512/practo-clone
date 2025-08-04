@@ -1,35 +1,32 @@
-// components/DoctorCard.js
+import React from 'react';
+import { MapPin, Stethoscope, BadgeCheck, IndianRupee } from 'lucide-react';
 
-import React from "react";
-
-const DoctorCard = ({ doctor }) => {
+const DoctorCard = ({ name, specialty, location, experience, fee }) => {
   return (
-    <div className="bg-white rounded-xl shadow-md p-5 flex items-start gap-5 hover:shadow-lg transition duration-300">
-      {/* Left: Doctor Image */}
-      <div className="w-24 h-24 overflow-hidden rounded-full border">
-        <img
-          src={doctor.image || "/doctor-placeholder.jpg"}
-          alt={doctor.name}
-          className="w-full h-full object-cover"
-        />
+    <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100">
+      <h3 className="text-xl font-semibold text-gray-800">{name}</h3>
+
+      <div className="mt-3 flex flex-col gap-2 text-sm text-gray-600">
+        <div className="flex items-center gap-2">
+          <Stethoscope size={18} />
+          <span>{specialty}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <MapPin size={18} />
+          <span>{location}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <BadgeCheck size={18} />
+          <span>{experience} years experience</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <IndianRupee size={18} />
+          <span>{fee} consultation fee</span>
+        </div>
       </div>
 
-      {/* Right: Doctor Info */}
-      <div className="flex-1">
-        <h3 className="text-lg font-semibold text-gray-800">{doctor.name}</h3>
-        <p className="text-sm text-gray-500 mb-1">{doctor.specialty}</p>
-
-        {/* Rating */}
-        <div className="flex items-center gap-1 text-yellow-500 text-sm mb-1">
-          <span>★ {doctor.rating || "4.5"}</span>
-          <span className="text-gray-400">({doctor.reviews || "120"})</span>
-        </div>
-
-        {/* Location */}
-        <p className="text-sm text-gray-600 mb-2">{doctor.location}</p>
-
-        {/* CTA */}
-        <button className="mt-2 px-4 py-1.5 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 transition">
+      <div className="mt-4">
+        <button className="bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg">
           Book Appointment
         </button>
       </div>
