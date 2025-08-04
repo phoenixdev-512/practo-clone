@@ -11,6 +11,8 @@ export default function HomePage() {
   };
 
   return (
+    <main>
+        <
     <div style={{ padding: '2rem' }}>
       <h1>Find the right doctor</h1>
       <input
@@ -19,15 +21,16 @@ export default function HomePage() {
         value={location}
         onChange={e => setLocation(e.target.value)}
         style={{ marginRight: '1rem' }}
-      />
+        />
       <input
         type="text"
         placeholder="Specialty"
         value={specialty}
         onChange={e => setSpecialty(e.target.value)}
         style={{ marginRight: '1rem' }}
-      />
+        />
       <button onClick={handleSearch}>Search</button>
     </div>
+    </main>
   );
 }
