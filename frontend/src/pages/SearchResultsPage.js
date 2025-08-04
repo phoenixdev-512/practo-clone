@@ -1,57 +1,49 @@
-'use client';
+// pages/SearchResultsPage.js
 
-import { useSearchParams } from 'next/navigation';
-import DoctorCard from '@/components/DoctorCard';
+import React from "react";
+import DoctorCard from "@/components/DoctorCard";
 
-export default function SearchResultsPage() {
-  const searchParams = useSearchParams();
-  const location = searchParams.get('location');
-  const specialty = searchParams.get('specialty');
+const doctors = [
+  {
+    name: "Dr. Ayesha Sharma",
+    specialty: "Dermatologist",
+    rating: 4.7,
+    reviews: 142,
+    location: "Whitefield, Bangalore",
+    image: "/doctor1.jpg",
+  },
+  {
+    name: "Dr. Rahul Mehta",
+    specialty: "Orthopedic Surgeon",
+    rating: 4.5,
+    reviews: 98,
+    location: "Koramangala, Bangalore",
+    image: "/doctor2.jpg",
+  },
+  {
+    name: "Dr. Neha Patel",
+    specialty: "Pediatrician",
+    rating: 4.8,
+    reviews: 205,
+    location: "Indiranagar, Bangalore",
+    image: "/doctor3.jpg",
+  },
+];
 
-  const dummyDoctors = [
-    {
-      name: "Dr. Anjali Mehra",
-      qualification: "MBBS, MD (Dermatology)",
-      specialty: "Dermatologist",
-      experience: 8,
-      location: "Indiranagar, Bangalore",
-      image: "/doctors/anjali.jpg",
-    },
-    {
-      name: "Dr. Rahul Sharma",
-      qualification: "BDS, MDS (Orthodontics)",
-      specialty: "Dentist",
-      experience: 5,
-      location: "Koramangala, Bangalore",
-      image: "/doctors/rahul.jpg",
-    },
-    {
-      name: "Dr. Neha Gupta",
-      qualification: "MBBS, MS (Gynecology)",
-      specialty: "Gynecologist",
-      experience: 10,
-      location: "Jayanagar, Bangalore",
-      image: "/doctors/neha.jpg",
-    },
-  ];
-
+const SearchResultsPage = () => {
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <h2 className="text-xl md:text-2xl font-semibold mb-6">
-        {specialty && location ? (
-          <>
-            Showing <span className="text-blue-600">{specialty}</span> doctors in <span className="text-blue-600">{location}</span>
-          </>
-        ) : (
-          "Showing All Doctors"
-        )}
+    <div className="min-h-screen bg-gray-50 py-10 px-4 md:px-10">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
+        Search Results
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {dummyDoctors.map((doctor, index) => (
+      <div className="grid gap-6">
+        {doctors.map((doctor, index) => (
           <DoctorCard key={index} doctor={doctor} />
         ))}
       </div>
     </div>
   );
-}
+};
+
+export default SearchResultsPage;
