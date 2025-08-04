@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import HeroSection from '../components/heroSection'
+import SearchBar from '../components/SearchBar';
+import DoctorList from '../components/DoctorList';
 
+const mockDoctors = [
+    { name: "Dr. Priya Sharma", specialty: "Dentist", location: "Bangalore", experience: 8, fee: 500 },
+    { name: "Dr. Arjun Rao", specialty: "Cardiologist", location: "Mumbai", experience: 12, fee: 1200 },
+    { name: "Dr. Neha Verma", specialty: "Dermatologist", location: "Delhi", experience: 5, fee: 700 },
+];
 export default function HomePage() {
   const router = useRouter();
   const [location, setLocation] = useState('');
