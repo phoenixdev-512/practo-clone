@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import HeroSection from '../components/heroSection'
+import HeroSection from '../components/HeroSection';
 import SearchBar from '../components/SearchBar';
 import DoctorList from '../components/DoctorList';
 
@@ -22,6 +22,8 @@ export default function HomePage() {
     <main>
         <HeroSection />
     <div style={{ padding: '2rem' }}>
+        <SearchBar />
+        <DoctorList doctors={mockDoctors}/>
       <h1>Find the right doctor</h1>
       <input
         type="text"
