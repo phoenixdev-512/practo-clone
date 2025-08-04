@@ -3,5 +3,8 @@ import { useRouter } from "next/router";
 
 export default function SearchBar() {
     const [location, setLocation] = useState('');
-    const [specialy, setSpeciality]
+    const [specialy, setSpeciality] = useState('');
+    const router = useRouter();
+
+    
 }
