@@ -33,18 +33,18 @@ export default function SearchResultsPage() {
   ];
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <h2 className="text-xl md:text-2xl font-semibold mb-6">
+    <div className="min-h-screen bg-gray-50 px-4 sm:px-8 md:px-16 py-10">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-8">
         {specialty && location ? (
           <>
-            Showing <span className="text-blue-600">{specialty}</span> doctors in <span className="text-blue-600">{location}</span>
+            Top <span className="text-blue-600">{specialty}</span> doctors in <span className="text-blue-600">{location}</span>
           </>
         ) : (
-          "Showing All Doctors"
+          "Top Doctors Near You"
         )}
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {dummyDoctors.map((doctor, index) => (
           <DoctorCard key={index} doctor={doctor} />
         ))}
