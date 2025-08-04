@@ -1,30 +1,52 @@
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import DoctorCard from '../app/components/DoctorCard';
+import DoctorCard from '../components/DoctorCard';
 
 export default function SearchResultsPage() {
   const router = useRouter();
-  const { location = '', specialty = '' } = router.query;
+  const { location, specialty } = router.query;
 
-  const [doctors, setDoctors] = useState([]);
-
-  useEffect(() => {
-    if (location || specialty) {
-      fetch(`http://localhost:5000/api/doctors?location=${location}&specialty=${specialty}`)
-        .then(res => res.json())
-        .then(data => setDoctors(data))
-        .catch(err => console.error('Fetch error:', err));
-    }
-  }, [location, specialty]);
+  const dummyDoctors = [
+    {
+      name: "Dr. Anjali Mehra",
+      qualification: "MBBS, MD (Dermatology)",
+      specialty: "Dermatologist",
+      experience: 8,
+      location: "Indiranagar, Bangalore",
+      image: "/doctors/anjali.jpg",
+    },
+    {
+      name: "Dr. Rahul Sharma",
+      qualification: "BDS, MDS (Orthodontics)",
+      specialty: "Dentist",
+      experience: 5,
+      location: "Koramangala, Bangalore",
+      image: "/doctors/rahul.jpg",
+    },
+    {
+      name: "Dr. Neha Gupta",
+      qualification: "MBBS, MS (Gynecology)",
+      specialty: "Gynecologist",
+      experience: 10,
+      location: "Jayanagar, Bangalore",
+      image: "/doctors/neha.jpg",
+    },
+  ];
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-semibold mb-4">
-        Showing results for <span className="font-bold">{specialty}</span> in <span className="font-bold">{location}</span>
+    <div className="p-6 max-w-7xl mx-auto">
+      <h2 className="text-xl md:text-2xl font-semibold mb-6">
+        {specialty && location ? (
+          <>
+            Showing <span className="text-blue-600">{specialty}</span> doctors in <span className="text-blue-600">{location}</span>
+          </>
+        ) : (
+          "Showing All Doctors"
+        )}
       </h2>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {doctors.map((doc, index) => (
-          <DoctorCard key={index} doctor={doc} />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {dummyDoctors.map((doctor, index) => (
+          <DoctorCard key={index} doctor={doctor} />
         ))}
       </div>
     </div>
