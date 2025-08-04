@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 
 export default function SearchBar() {
     const [location, setLocation] = useState('');
-    const [specialy, setSpeciality] = useState('');
+    const [specialty, setSpecialty] = useState('');
     const router = useRouter();
 
     const handleSearch = (e) => {
         e.preventDefault();
-        router.push('/search?location=${location}&specialty=${specialty}');
+        router.push(`/search?location=${location}&specialty=${specialty}`);
     };
 
     return (
@@ -24,12 +24,12 @@ export default function SearchBar() {
                 type="text"
                 placeholder="Specialty"
                 value={specialty}
-                onChange={(e) => setSpeciality(e.target.value)}
+                onChange={(e) => setSpecialty(e.target.value)}
                 className="border p-2 rounded w-full sm:w-1/2"
             />
             <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-            Search
+                Search
             </button>
         </form>
-    )
+    );
 }
