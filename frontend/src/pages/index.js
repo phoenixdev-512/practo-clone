@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import HeroSection from '../components/heroSection'
 
 export default function HomePage() {
   const router = useRouter();
@@ -12,7 +13,7 @@ export default function HomePage() {
 
   return (
     <main>
-        <
+        <HeroSection />
     <div style={{ padding: '2rem' }}>
       <h1>Find the right doctor</h1>
       <input
