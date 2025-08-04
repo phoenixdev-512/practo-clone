@@ -27,9 +27,9 @@ export default function SearchBar() {
                 onChange={(e) => setSpeciality(e.target.value)}
                 className="border p-2 rounded w-full sm:w-1/2"
             />
-            <button
-            type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-            Search />
+            <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Search
+            </button>
         </form>
     )
 }
