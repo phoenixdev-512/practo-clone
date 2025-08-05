@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Anjali Sharma",
+    "specialty": "Cardiologist",
+    "location": "Delhi"
+  },
+  {
+    "id": 2,
+    "name": "Dr. Rajeev Menon",
+    "specialty": "Dermatologist",
+    "location": "Bangalore"
+  },
+  {
+    "id": 3,
+    "name": "Dr. Neha Gupta",
+    "specialty": "Pediatrician",
+    "location": "Mumbai"
+  }
+]
