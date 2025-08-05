@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import HeroSection from '../components/HeroSection';
+import HeroSection from '../components/heroSectioneroSection';
 import SearchBar from '../components/SearchBar';
 import DoctorList from '../components/DoctorList';
 
