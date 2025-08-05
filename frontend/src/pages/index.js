@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import HeroSection from '../components/heroSectioneroSection';
+import HeroSection from '../components/heroSection';
 import SearchBar from '../components/SearchBar';
 import DoctorList from '../components/DoctorList';
 
@@ -21,7 +21,7 @@ export default function HomePage() {
 
   return (
     <main className="bg-gray-50 min-h-screen">
-      <HeroSection />
+      <heroSection />
 
       <section className="max-w-6xl mx-auto px-4 py-10">
         <div className="bg-white p-6 rounded-xl shadow-md mb-8">

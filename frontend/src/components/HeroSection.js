@@ -1,6 +1,6 @@
 import SearchBar from './SearchBar';
 
-export default function HeroSection() {
+export default function heroSection() {
     return (
         <div className="bg-blue-50 py-10 sm:py-16 px-4 sm:px-8 md:px-16 lg:px-32">
             <div className="max-w-7xl mx-auto text-center">
