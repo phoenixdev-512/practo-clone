@@ -1,6 +1,6 @@
 // src/trpc/routers/doctors.ts
 import { z } from 'zod';
-import { publicProcedure, router } from '../trpc';
+import { publicProcedure, router } from '../trpc'; // or the correct relative path to your trpc file
 
 export const doctorRouter = router({
   getAll: publicProcedure.query(() => {
@@ -12,7 +12,7 @@ export const doctorRouter = router({
 
   getById: publicProcedure
     .input(z.object({ id: z.number() }))
-    .query(({ input }) => {
+    .query(({ input }: { input: { id: number } }) => {
       return { id: input.id, name: 'Dr. Placeholder', specialization: 'Neurologist' };
     }),
 });
