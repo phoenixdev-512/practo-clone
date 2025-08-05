@@ -1,6 +1,6 @@
 // src/trpc/routers/doctors.ts
 import { z } from 'zod';
-import { publicProcedure, router } from '../trpc'; // or the correct relative path to your trpc file
+import { publicProcedure, router } from '../../server/trpc'; // adjust the path if needed
 
 export const doctorRouter = router({
   getAll: publicProcedure.query(() => {
