@@ -1,9 +1,13 @@
 'use client';
 
-import { trpc } from '@/utils/trpc';
+// Update the import path below if your trpc utility is located elsewhere
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { httpBatchLink } from '@trpc/client';
 import React from 'react';
+import { createTRPCReact } from '@trpc/react-query';
+import type { AppRouter } from '../../server/trpc/router'; // Adjust path as needed
+
+const trpc = createTRPCReact<AppRouter>();
 
 const getBaseUrl = () => {
   if (typeof window !== 'undefined') return ''; // browser should use relative path
