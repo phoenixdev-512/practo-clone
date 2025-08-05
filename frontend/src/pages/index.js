@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import HeroSection from '../components/heroSection';
 import SearchBar from '../components/SearchBar';
 import DoctorList from '../components/DoctorList';
+import Navbar from '../components/NavBar';
 
 const mockDoctors = [
   { name: "Dr. Priya Sharma", specialty: "Dentist", location: "Bangalore", experience: 8, fee: 500 },
@@ -21,8 +22,8 @@ export default function HomePage() {
 
   return (
     <main className="bg-gray-50 min-h-screen">
-      <heroSection />
-
+    <Navbar />
+    <heroSection />
       <section className="max-w-6xl mx-auto px-4 py-10">
         <div className="bg-white p-6 rounded-xl shadow-md mb-8">
           <h2 className="text-2xl font-semibold mb-4 text-gray-800">Find the right doctor</h2>
