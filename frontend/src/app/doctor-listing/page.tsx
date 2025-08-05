@@ -17,9 +17,8 @@ export default function DoctorListingPage() {
         {data?.map((doctor) => (
           <li key={doctor.id} className="border p-4 rounded shadow">
             <h3 className="text-lg font-semibold">{doctor.name}</h3>
-            <p>{doctor.speciality}</p>
+            <p>{doctor.specialty}</p>
             <p>{doctor.location}</p>
-            <p>Fee: ₹{doctor.fee}</p>
           </li>
         ))}
       </ul>
