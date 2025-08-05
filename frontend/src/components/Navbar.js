@@ -1,5 +1,5 @@
-// components/Navbar.jsx
-export default function Navbar() {
+// components/NavBar.jsx
+export default function NavBar() {
   return (
     <nav className="w-full px-6 py-4 shadow-md flex justify-between items-center bg-white">
       <div className="text-xl font-bold text-blue-600">PractoClone</div>

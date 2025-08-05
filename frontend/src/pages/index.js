@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import HeroSection from '../components/heroSection';
+import HeroSection from '../components/Hero';
 import SearchBar from '../components/SearchBar';
 import DoctorList from '../components/DoctorList';
-import Navbar from '../components/NavBar';
+import NavBar from '../components/NavBar';
+
 
 const mockDoctors = [
   { name: "Dr. Priya Sharma", specialty: "Dentist", location: "Bangalore", experience: 8, fee: 500 },
@@ -22,7 +23,7 @@ export default function HomePage() {
 
   return (
     <main className="bg-gray-50 min-h-screen">
-    <Navbar />
+    <NavBar />
     <heroSection />
       <section className="max-w-6xl mx-auto px-4 py-10">
         <div className="bg-white p-6 rounded-xl shadow-md mb-8">
