@@ -4,9 +4,9 @@ import { publicProcedure, router } from '../../server/trpc'; // adjust the path 
 
 export const doctorRouter = router({
   getAll: publicProcedure.query(() => {
-    return [
-      { id: 1, name: 'Dr. John Watson', specialization: 'Cardiologist' },
-      { id: 2, name: 'Dr. Lisa Ray', specialization: 'Dermatologist' },
+     return [
+      { id: 1, name: 'Dr. John Doe', specialty: 'Cardiology', location: 'Bangalore' },
+      { id: 2, name: 'Dr. Jane Smith', specialty: 'Dermatology', location: 'Mumbai' }
     ];
   }),
 
