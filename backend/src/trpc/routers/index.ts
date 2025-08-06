@@ -1,9 +1,9 @@
 import { router } from '../index';
 import { authRouter } from './auth'; // update the path as needed
-import { doctorRouter } from './doctors';
+import { doctorsRouter } from './doctors';
 
 export const appRouter = router({
-    doctor: doctorRouter,
+    doctors: doctorsRouter,
     auth: authRouter
 });
 

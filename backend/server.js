@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(json());
 
+// Get all doctors
 app.get('/api/doctors', (req, res) => {
   const { location = '', specialty = '' } = req.query;
 
@@ -23,6 +24,26 @@ app.get('/api/doctors', (req, res) => {
   );
 
   res.json(filtered);
+});
+
+// Get doctor by ID - New endpoint
+app.get('/api/doctors/:id', (req, res) => {
+  console.log('Received request for doctor ID:', req.params.id);
+  const doctorId = parseInt(req.params.id);
+  const doctor = doctors.find(doc => doc.id === doctorId);
+  
+  if (!doctor) {
+    console.log(`Doctor with ID ${doctorId} not found`);
+    return res.status(404).json({ error: `Doctor with ID ${doctorId} not found` });
+  }
+  
+  console.log('Found doctor:', doctor);
+  res.json({
+    id: doctor.id,
+    name: doctor.name,
+    specialty: doctor.specialty,
+    location: doctor.location
+  });
 });
 
 app.get('/api/ping', (req, res) => {

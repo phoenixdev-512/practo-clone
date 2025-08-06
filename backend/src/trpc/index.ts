@@ -1,14 +1,11 @@
 // src/trpc/index.ts
 import { initTRPC } from '@trpc/server';
-import { doctorRouter } from './routers/doctors';
+import { appRouter } from './routers/index';
 
 export const t = initTRPC.create();
 
 export const router = t.router;
 export const publicProcedure = t.procedure;
 
-export const appRouter = router({
-  doctors: doctorRouter,
-});
-
+export { appRouter };
 export type AppRouter = typeof appRouter;
