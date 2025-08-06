@@ -5,11 +5,18 @@ import SpecialtySearch from '../../components/SpecialtySearch';
 import AddDoctorForm from '../../components/AddDoctorForm';
 import CitySearch from '../../components/CitySearch';
 
+interface Doctor {
+  id: number;
+  name: string;
+  specialty: string;
+  location: string;
+}
+
 export default function DoctorListingPage() {
-  const [doctors, setDoctors] = useState([]);
-  const [selectedDoctorId, setSelectedDoctorId] = useState('1');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [selectedDoctorId, setSelectedDoctorId] = useState<string>('1');
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchDoctors = async () => {
     try {
@@ -17,10 +24,10 @@ export default function DoctorListingPage() {
       if (!response.ok) {
         throw new Error('Failed to fetch doctors');
       }
-      const data = await response.json();
+      const data: Doctor[] = await response.json();
       setDoctors(data);
     } catch (err) {
-      setError(err.message);
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
     }
@@ -30,12 +37,12 @@ export default function DoctorListingPage() {
     fetchDoctors();
   }, []);
 
-  const handleDoctorAdded = (newDoctor) => {
-    // Refresh the doctors list when a new doctor is added
-    fetchDoctors();
-    // Optionally select the new doctor
-    setSelectedDoctorId(newDoctor.id.toString());
-  };
+  function handleDoctorAdded(newDoctor: Doctor) {
+        // Refresh the doctors list when a new doctor is added
+        fetchDoctors();
+        // Optionally select the new doctor
+        setSelectedDoctorId(newDoctor.id.toString());
+    }
 
   if (loading) return <p>Loading doctors...</p>;
   if (error) return <p>Error: {error}</p>;
