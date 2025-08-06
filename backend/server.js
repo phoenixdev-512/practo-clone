@@ -1,8 +1,6 @@
 import express, { json } from 'express';
 import cors from 'cors';
-import { filter } from './doctors.json';
-import doctors from './doctors.json';
-
+import {doctors, filter } from './doctors.json' assert { type: "json" };
 const app = express();
 const PORT = process.env.PORT || 5000;
 
