@@ -92,6 +92,7 @@ export default function PractoHomePage() {
               <a href="#" className="text-gray-700 hover:text-blue-600">Surgeries</a>
             </nav>
             <div className="flex items-center space-x-4">
+              <a href="/admin" className="text-gray-700 hover:text-blue-600">Admin</a>
               <button className="text-gray-700 hover:text-blue-600">Login / Signup</button>
             </div>
           </div>
@@ -220,9 +221,12 @@ export default function PractoHomePage() {
                             <span className="text-sm text-gray-500 ml-1">Consultation fee</span>
                           </div>
                           <div className="space-y-2">
-                            <button className="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                            <a 
+                              href={`/doctor/${doctor.id}`}
+                              className="block w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors text-center"
+                            >
                               Book Appointment
-                            </button>
+                            </a>
                             <button className="w-full md:w-auto border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-2 rounded-lg font-semibold transition-colors">
                               Video Consult
                             </button>
