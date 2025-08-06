@@ -31,4 +31,20 @@ export const doctorsRouter = router({
         location: doctor.location,
       };
     }),
+
+  searchBySpecialty: publicProcedure
+    .input(z.string())
+    .query(async ({ input }) => {
+      const searchSpecialty = input.toLowerCase();
+      const matchingDoctors = doctorsData.filter((doc: any) => 
+        doc.specialty.toLowerCase().includes(searchSpecialty)
+      );
+      
+      return matchingDoctors.map((doctor: any) => ({
+        id: doctor.id,
+        name: doctor.name,
+        specialty: doctor.specialty,
+        location: doctor.location,
+      }));
+    }),
 });

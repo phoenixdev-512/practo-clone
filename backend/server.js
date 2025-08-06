@@ -46,6 +46,25 @@ app.get('/api/doctors/:id', (req, res) => {
   });
 });
 
+// Search doctors by specialty - New endpoint
+app.get('/api/doctors/specialty/:specialty', (req, res) => {
+  console.log('Received request for specialty:', req.params.specialty);
+  const searchSpecialty = req.params.specialty.toLowerCase();
+  
+  const matchingDoctors = doctors.filter(doc => 
+    doc.specialty.toLowerCase().includes(searchSpecialty)
+  );
+  
+  console.log(`Found ${matchingDoctors.length} doctors with specialty containing "${searchSpecialty}"`);
+  
+  res.json(matchingDoctors.map(doctor => ({
+    id: doctor.id,
+    name: doctor.name,
+    specialty: doctor.specialty,
+    location: doctor.location
+  })));
+});
+
 app.get('/api/ping', (req, res) => {
   res.json({ message: 'API is live' });
 });
