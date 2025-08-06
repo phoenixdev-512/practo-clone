@@ -1,5 +1,5 @@
 // src/app/layout.tsx
-import './globals.css'; // if using Tailwind
+import '../globals.css'; // if using Tailwind
 import { TRPCProvider } from './_trpc/Provider';
 import React from 'react';
 
