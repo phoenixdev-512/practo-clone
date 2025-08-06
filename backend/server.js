@@ -1,6 +1,13 @@
 import express, { json } from 'express';
 import cors from 'cors';
-import {doctors, filter } from './doctors.json' assert { type: "json" };
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const doctors = JSON.parse(readFileSync(join(__dirname, 'doctors.json'), 'utf8'));
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -10,7 +17,7 @@ app.use(json());
 app.get('/api/doctors', (req, res) => {
   const { location = '', specialty = '' } = req.query;
 
-  const filtered = filter(doc =>
+  const filtered = doctors.filter(doc =>
     doc.location.toLowerCase().includes(location.toLowerCase()) &&
     doc.specialty.toLowerCase().includes(specialty.toLowerCase())
   );
