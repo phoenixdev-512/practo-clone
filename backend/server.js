@@ -65,6 +65,60 @@ app.get('/api/doctors/specialty/:specialty', (req, res) => {
   })));
 });
 
+// Add a new doctor - New mutation endpoint
+app.post('/api/doctors', (req, res) => {
+  console.log('Received request to add doctor:', req.body);
+  
+  const { name, specialty, location } = req.body;
+  
+  // Validation
+  if (!name || !specialty || !location) {
+    return res.status(400).json({ 
+      error: 'Missing required fields: name, specialty, and location are required' 
+    });
+  }
+  
+  // Generate new ID (in real app, this would be handled by database)
+  const newId = Math.max(...doctors.map(doc => doc.id)) + 1;
+  
+  const newDoctor = {
+    id: newId,
+    name: name.trim(),
+    specialty: specialty.trim(),
+    location: location.trim()
+  };
+  
+  // Add to in-memory array (in real app, save to database)
+  doctors.push(newDoctor);
+  
+  console.log('Successfully added doctor:', newDoctor);
+  console.log(`Total doctors now: ${doctors.length}`);
+  
+  res.status(201).json({
+    message: 'Doctor added successfully',
+    doctor: newDoctor
+  });
+});
+
+// Search doctors by city/location - New endpoint  
+app.get('/api/doctors/city/:city', (req, res) => {
+  console.log('Received request for city:', req.params.city);
+  const searchCity = req.params.city.toLowerCase();
+  
+  const matchingDoctors = doctors.filter(doc => 
+    doc.location.toLowerCase().includes(searchCity)
+  );
+  
+  console.log(`Found ${matchingDoctors.length} doctors in city containing "${searchCity}"`);
+  
+  res.json(matchingDoctors.map(doctor => ({
+    id: doctor.id,
+    name: doctor.name,
+    specialty: doctor.specialty,
+    location: doctor.location
+  })));
+});
+
 app.get('/api/ping', (req, res) => {
   res.json({ message: 'API is live' });
 });

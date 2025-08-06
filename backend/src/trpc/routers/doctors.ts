@@ -47,4 +47,48 @@ export const doctorsRouter = router({
         location: doctor.location,
       }));
     }),
+
+  addDoctor: publicProcedure
+    .input(
+      z.object({
+        name: z.string(),
+        specialty: z.string(),
+        location: z.string(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      // In real app, insert into DB
+      console.log("Adding doctor:", input);
+
+      // Generate new ID (in real app, this would be handled by database)
+      const newId = Math.max(...doctorsData.map((doc: any) => doc.id)) + 1;
+      
+      const newDoctor = {
+        id: newId,
+        name: input.name.trim(),
+        specialty: input.specialty.trim(),
+        location: input.location.trim(),
+      };
+
+      // Add to in-memory array (in real app, save to database)
+      doctorsData.push(newDoctor);
+
+      return newDoctor;
+    }),
+
+  getDoctorsByCity: publicProcedure
+    .input(z.string())
+    .query(async ({ input }) => {
+      const searchCity = input.toLowerCase();
+      const matchingDoctors = doctorsData.filter((doc: any) => 
+        doc.location.toLowerCase().includes(searchCity)
+      );
+      
+      return matchingDoctors.map((doctor: any) => ({
+        id: doctor.id,
+        name: doctor.name,
+        specialty: doctor.specialty,
+        location: doctor.location,
+      }));
+    }),
 });
