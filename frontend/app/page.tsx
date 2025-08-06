@@ -1,9 +1,5 @@
-import DoctorDemo from './DoctorDemo';
+import PractoHomePage from './components/PractoHomePage';
 
 export default function HomePage() {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <DoctorDemo />
-    </div>
-  );
+  return <PractoHomePage />;
 }
