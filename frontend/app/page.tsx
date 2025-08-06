@@ -1,5 +1,5 @@
 import PractoHomePage from './components/PractoHomePage';
 
-export default function HomePage() {
+export default function Home() {
   return <PractoHomePage />;
 }
