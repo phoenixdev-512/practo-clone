@@ -1,12 +1,8 @@
-// frontend/src/utils/trpc.ts
+// frontend/src/utils/trpc.js
 'use client';
 
 import { createTRPCReact } from '@trpc/react-query';
-// Update the import path below to the correct relative path where AppRouter is exported
-// Update the import path below to the correct relative path where AppRouter is exported
-import type { AppRouter } from '../../../backend/src/trpc/index'; // adjust this path if your folder structure is different
-// If the path above is incorrect, update it to the correct relative path, for example:
-// import type { AppRouter } from '../../backend/src/router';
-// or wherever your AppRouter is actually exported from.
+// Note: Since we've converted to JavaScript, we can't import types
+// The AppRouter type is no longer needed for JavaScript usage
 
-export const trpc = createTRPCReact<AppRouter>();
+export const trpc = createTRPCReact();
