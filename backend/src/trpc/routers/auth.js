@@ -1,4 +1,4 @@
-import { publicProcedure, router } from '../index.js'; // Import both publicProcedure and router
+import { publicProcedure, router } from '../config.js'; // Import from config to avoid circular imports
 
 export const authRouter = router({
   hello: publicProcedure.query(() => {
