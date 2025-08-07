@@ -1,11 +1,7 @@
 // src/trpc/routers/doctors.js
 import { z } from 'zod';
-import { publicProcedure } from '../../server/trpc'; // Ensure this path is correct
+import { publicProcedure, router } from '../index'; // Import both publicProcedure and router
 import { doctorRouter as baseDoctorRouter } from '../../server/routers/doctor';
-// If '../trpc' does not exist, update to the correct path, for example:
-// import { publicProcedure, router } from '../trpcUtils';
-// or
-// import { publicProcedure, router } from '../../trpc';
 
 export const doctorRouter = router({
   getAll: publicProcedure.query(() => {
