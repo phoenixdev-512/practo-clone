@@ -1,4 +1,4 @@
-// src/index.ts
+// src/index.js
 import express from 'express';
 import cors from 'cors';
 import * as trpcExpress from '@trpc/server/adapters/express';

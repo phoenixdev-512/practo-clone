@@ -1,4 +1,4 @@
-// server/routers/doctor.ts
+// server/routers/doctor.js
 import { publicProcedure, router } from '../trpc';
 import { z } from 'zod';
 

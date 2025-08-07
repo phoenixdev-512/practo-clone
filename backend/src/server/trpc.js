@@ -1,4 +1,4 @@
-// backend/src/server/trpc.ts
+// backend/src/server/trpc.js
 import { initTRPC } from '@trpc/server';
 
 const t = initTRPC.create();

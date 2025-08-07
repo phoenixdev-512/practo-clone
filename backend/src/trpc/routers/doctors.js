@@ -1,6 +1,6 @@
 // src/trpc/routers/doctors.js
 import { z } from 'zod';
-import { publicProcedure, router } from '../../server/trpc'; // adjust the path if needed
+import { publicProcedure, router } from '../index'; // Import from TRPC configuration
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
