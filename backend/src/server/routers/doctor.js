@@ -1,5 +1,5 @@
 // server/routers/doctor.js
-import { publicProcedure, router } from '../trpc';
+import { publicProcedure, router } from '../trpc.js';
 import { z } from 'zod';
 
 export const doctorRouter = router({

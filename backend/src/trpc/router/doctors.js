@@ -1,7 +1,7 @@
 // src/trpc/routers/doctors.js
 import { z } from 'zod';
-import { publicProcedure, router } from '../index'; // Import both publicProcedure and router
-import { doctorRouter as baseDoctorRouter } from '../../server/routers/doctor';
+import { publicProcedure, router } from '../index.js'; // Import both publicProcedure and router
+import { doctorRouter as baseDoctorRouter } from '../../server/routers/doctor.js';
 
 export const doctorRouter = router({
   getAll: publicProcedure.query(() => {

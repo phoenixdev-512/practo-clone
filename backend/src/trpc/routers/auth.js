@@ -1,7 +1,7 @@
-import { t } from '../index.js'; // `t` is from TRPC init
+import { publicProcedure, router } from '../index.js'; // Import both publicProcedure and router
 
-export const authRouter = t.router({
-  hello: t.procedure.query(() => {
+export const authRouter = router({
+  hello: publicProcedure.query(() => {
     return { msg: 'Hello from auth router' };
   }),
 });
