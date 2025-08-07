@@ -1,4 +1,4 @@
-import { router } from '../index.js';
+import { router } from '../config.js';
 import { authRouter } from './auth.js'; // update the path as needed
 import { doctorsRouter } from './doctors.js';
 
