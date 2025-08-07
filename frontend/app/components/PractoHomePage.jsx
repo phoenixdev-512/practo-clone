@@ -1,37 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
+import { trpc } from '../../src/utils/trpc';
 
 export default function PractoHomePage() {
-  const [doctors, setDoctors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('Bangalore');
-  const [loading, setLoading] = useState(true);
 
-  // Fetch doctors from API
-  useEffect(() => {
-    const fetchDoctors = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/doctors');
-        const data = await response.json();
-        // Add some mock data for better presentation
-        const enrichedDoctors = data.map((doctor, index) => ({
-          ...doctor,
-          rating: 4.1 + (index * 0.2),
-          experience: 5 + (index * 2),
-          fees: 300 + (index * 50)
-        }));
-        setDoctors(enrichedDoctors);
-      } catch (error) {
-        console.error('Error fetching doctors:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchDoctors();
-  }, []);
+  // Use TRPC to fetch doctors
+  const { data: doctors = [], isLoading } = trpc.doctors.getAll.useQuery();
 
   const popularSearches = [
     'Dermatologist', 'Pediatrician', 'Gynecologist', 'ENT', 'Cardiologist', 

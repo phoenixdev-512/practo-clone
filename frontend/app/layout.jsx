@@ -1,5 +1,6 @@
 import '../globals.css';
 import React from 'react';
+import { TRPCProvider } from './_trpc/Provider';
 
 export const metadata = {
   title: 'Practo Clone',
@@ -10,7 +11,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {children}
+        <TRPCProvider>
+          {children}
+        </TRPCProvider>
       </body>
     </html>
   );
