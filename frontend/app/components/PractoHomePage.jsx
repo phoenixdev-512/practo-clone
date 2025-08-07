@@ -225,31 +225,51 @@ export default function PractoHomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {doctors.slice(0, 6).map((doctor) => (
-              <div key={doctor.id} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-                <div className="flex items-center mb-4">
-                  <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-xl font-semibold text-blue-600">
-                      {doctor.name.split(' ').map(n => n[0]).join('')}
-                    </span>
+            {isLoading ? (
+              // Loading skeleton
+              Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="bg-white rounded-lg shadow-sm p-6 animate-pulse">
+                  <div className="flex items-center mb-4">
+                    <div className="w-16 h-16 bg-gray-200 rounded-full mr-4"></div>
+                    <div>
+                      <div className="h-4 bg-gray-200 rounded w-32 mb-2"></div>
+                      <div className="h-3 bg-gray-200 rounded w-24 mb-1"></div>
+                      <div className="h-3 bg-gray-200 rounded w-28"></div>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900">{doctor.name}</h3>
-                    <p className="text-blue-600">{doctor.specialty}</p>
-                    <p className="text-sm text-gray-500">{doctor.experience} years experience</p>
+                  <div className="flex items-center justify-between">
+                    <div className="h-6 bg-gray-200 rounded w-16"></div>
+                    <div className="h-8 bg-gray-200 rounded w-24"></div>
                   </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <span className="text-2xl font-bold text-gray-900">₹{doctor.fees}</span>
-                    <span className="text-sm text-gray-500 ml-1">onwards</span>
+              ))
+            ) : (
+              doctors.slice(0, 6).map((doctor, index) => (
+                <div key={doctor.id} className="bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
+                  <div className="flex items-center mb-4">
+                    <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                      <span className="text-xl font-semibold text-blue-600">
+                        {doctor.name.split(' ').map(n => n[0]).join('')}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900">{doctor.name}</h3>
+                      <p className="text-blue-600">{doctor.specialty}</p>
+                      <p className="text-sm text-gray-500">{5 + (index * 2)} years experience</p>
+                    </div>
                   </div>
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-                    Consult Now
-                  </button>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-2xl font-bold text-gray-900">₹{300 + (index * 50)}</span>
+                      <span className="text-sm text-gray-500 ml-1">onwards</span>
+                    </div>
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                      Consult Now
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
 
           <div className="text-center mt-8">

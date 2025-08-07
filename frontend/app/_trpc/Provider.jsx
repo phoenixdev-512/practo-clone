@@ -9,8 +9,8 @@ import { createTRPCReact } from '@trpc/react-query';
 const trpc = createTRPCReact();
 
 const getBaseUrl = () => {
-  if (typeof window !== 'undefined') return ''; // browser should use relative path
-  return 'http://localhost:3000'; // backend URL - updated to correct port
+  if (typeof window !== 'undefined') return 'http://localhost:3000'; // browser should call backend directly
+  return 'http://localhost:3000'; // backend URL
 };
 
 export function TRPCProvider({ children }) {
