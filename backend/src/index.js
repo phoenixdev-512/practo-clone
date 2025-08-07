@@ -2,7 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import * as trpcExpress from '@trpc/server/adapters/express';
-import { appRouter } from './trpc';
+import { appRouter } from './trpc/index.js';
 
 const app = express();
 const port = 3000;

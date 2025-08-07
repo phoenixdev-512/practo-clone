@@ -1,4 +1,4 @@
-import { t } from '../index'; // `t` is from TRPC init
+import { t } from '../index.js'; // `t` is from TRPC init
 
 export const authRouter = t.router({
   hello: t.procedure.query(() => {

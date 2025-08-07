@@ -1,6 +1,6 @@
 // src/trpc/index.js
 import { initTRPC } from '@trpc/server';
-import { appRouter } from './routers/index';
+import { appRouter } from './routers/index.js';
 
 export const t = initTRPC.create();
 
