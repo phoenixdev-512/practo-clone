@@ -6,5 +6,3 @@ export const appRouter = router({
     doctors: doctorsRouter,
     auth: authRouter
 });
-
-export type AppRouter = typeof appRouter;
