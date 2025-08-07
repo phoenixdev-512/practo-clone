@@ -2,15 +2,8 @@
 
 import { useState, useEffect } from 'react';
 
-interface Doctor {
-  id: number;
-  name: string;
-  specialty: string;
-  location: string;
-}
-
 export default function DoctorDemo() {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [newDoctor, setNewDoctor] = useState({
     name: '',

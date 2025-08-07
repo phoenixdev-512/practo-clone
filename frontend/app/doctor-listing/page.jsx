@@ -3,21 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-interface Doctor {
-  id: number;
-  name: string;
-  specialty: string;
-  location: string;
-  rating?: number;
-  experience?: number;
-  fees?: number;
-  patientStories?: number;
-  availability?: string;
-}
-
 export default function DoctorListingPage() {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
-  const [filteredDoctors, setFilteredDoctors] = useState<Doctor[]>([]);
+  const [doctors, setDoctors] = useState([]);
+  const [filteredDoctors, setFilteredDoctors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('JP Nagar, Bangalore');
   const [selectedGender, setSelectedGender] = useState('');
@@ -32,7 +20,7 @@ export default function DoctorListingPage() {
         const response = await fetch('http://localhost:5000/api/doctors');
         const data = await response.json();
         // Add enriched data for better presentation
-        const enrichedDoctors = data.map((doctor: any, index: number) => ({
+        const enrichedDoctors = data.map((doctor, index) => ({
           ...doctor,
           rating: 4.1 + (index * 0.2),
           experience: 5 + (index * 2),
@@ -228,7 +216,7 @@ export default function DoctorListingPage() {
             </div>
           ) : (
             <div className="space-y-6">
-              {filteredDoctors.map((doctor: any) => (
+              {filteredDoctors.map((doctor) => (
                 <div key={doctor.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow">
                   <div className="p-6">
                     <div className="flex flex-col lg:flex-row gap-6">
@@ -236,7 +224,7 @@ export default function DoctorListingPage() {
                       <div className="flex-shrink-0">
                         <div className="w-24 h-24 bg-blue-100 rounded-lg flex items-center justify-center">
                           <span className="text-2xl font-semibold text-blue-600">
-                            {doctor.name.split(' ').map((n: string) => n[0]).join('')}
+                            {doctor.name.split(' ').map((n) => n[0]).join('')}
                           </span>
                         </div>
                       </div>

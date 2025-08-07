@@ -2,15 +2,8 @@
 
 import { useState, useEffect } from 'react';
 
-interface Doctor {
-  id: number;
-  name: string;
-  specialty: string;
-  location: string;
-}
-
 export default function AdminPage() {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [newDoctor, setNewDoctor] = useState({
     name: '',
@@ -35,7 +28,7 @@ export default function AdminPage() {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -63,7 +56,7 @@ export default function AdminPage() {
     }
   };
 
-  const testEndpoint = async (endpoint: string, description: string) => {
+  const testEndpoint = async (endpoint, description) => {
     try {
       const response = await fetch(`http://localhost:5000${endpoint}`);
       const data = await response.json();
