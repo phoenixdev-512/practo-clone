@@ -10,7 +10,7 @@ const trpc = createTRPCReact();
 
 const getBaseUrl = () => {
   if (typeof window !== 'undefined') return ''; // browser should use relative path
-  return 'http://localhost:4000'; // backend URL
+  return 'http://localhost:3000'; // backend URL - updated to correct port
 };
 
 export function TRPCProvider({ children }) {
@@ -19,7 +19,7 @@ export function TRPCProvider({ children }) {
     trpc.createClient({
       links: [
         httpBatchLink({
-          url: `${getBaseUrl()}/trpc`,
+          url: `${getBaseUrl()}/api/trpc`,
         }),
       ],
     })
