@@ -3,18 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-interface Doctor {
-  id: number;
-  name: string;
-  specialty: string;
-  location: string;
-  rating?: number;
-  experience?: number;
-  fees?: number;
-}
-
 export default function PractoHomePage() {
-  const [doctors, setDoctors] = useState<Doctor[]>([]);
+  const [doctors, setDoctors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('Bangalore');
   const [loading, setLoading] = useState(true);
@@ -26,7 +16,7 @@ export default function PractoHomePage() {
         const response = await fetch('http://localhost:5000/api/doctors');
         const data = await response.json();
         // Add some mock data for better presentation
-        const enrichedDoctors = data.map((doctor: Doctor, index: number) => ({
+        const enrichedDoctors = data.map((doctor, index) => ({
           ...doctor,
           rating: 4.1 + (index * 0.2),
           experience: 5 + (index * 2),
