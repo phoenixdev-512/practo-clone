@@ -1,4 +1,4 @@
-// src/trpc/routers/doctors.ts
+// src/trpc/routers/doctors.js
 import { z } from 'zod';
 import { publicProcedure, router } from '../../server/trpc'; // adjust the path if needed
 import { readFileSync } from 'fs';
@@ -18,7 +18,7 @@ export const doctorsRouter = router({
     .input(z.string())
     .query(async ({ input }) => {
       const doctorId = parseInt(input);
-      const doctor = doctorsData.find((doc: any) => doc.id === doctorId);
+      const doctor = doctorsData.find((doc) => doc.id === doctorId);
       
       if (!doctor) {
         throw new Error(`Doctor with ID ${input} not found`);
@@ -36,11 +36,11 @@ export const doctorsRouter = router({
     .input(z.string())
     .query(async ({ input }) => {
       const searchSpecialty = input.toLowerCase();
-      const matchingDoctors = doctorsData.filter((doc: any) => 
+      const matchingDoctors = doctorsData.filter((doc) => 
         doc.specialty.toLowerCase().includes(searchSpecialty)
       );
       
-      return matchingDoctors.map((doctor: any) => ({
+      return matchingDoctors.map((doctor) => ({
         id: doctor.id,
         name: doctor.name,
         specialty: doctor.specialty,
@@ -61,7 +61,7 @@ export const doctorsRouter = router({
       console.log("Adding doctor:", input);
 
       // Generate new ID (in real app, this would be handled by database)
-      const newId = Math.max(...doctorsData.map((doc: any) => doc.id)) + 1;
+      const newId = Math.max(...doctorsData.map((doc) => doc.id)) + 1;
       
       const newDoctor = {
         id: newId,
@@ -80,11 +80,11 @@ export const doctorsRouter = router({
     .input(z.string())
     .query(async ({ input }) => {
       const searchCity = input.toLowerCase();
-      const matchingDoctors = doctorsData.filter((doc: any) => 
+      const matchingDoctors = doctorsData.filter((doc) => 
         doc.location.toLowerCase().includes(searchCity)
       );
       
-      return matchingDoctors.map((doctor: any) => ({
+      return matchingDoctors.map((doctor) => ({
         id: doctor.id,
         name: doctor.name,
         specialty: doctor.specialty,
