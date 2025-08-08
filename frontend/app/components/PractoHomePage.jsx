@@ -2,29 +2,29 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { trpc } from '../../src/utils/trpc';
 
 export default function PractoHomePage() {
-  // Fix hydration error: floating dots state
-  const [floatingDots, setFloatingDots] = useState([]);
-  const [showFloatingDots, setShowFloatingDots] = useState(false);
+  // Data: doctors via REST (unified with listing)
+  const [doctors, setDoctors] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Only run on client
-    const dots = Array.from({ length: 20 }).map(() => ({
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      animationDelay: `${Math.random() * 5}s`,
-      animationDuration: `${3 + Math.random() * 4}s`,
-    }));
-    setFloatingDots(dots);
-    setShowFloatingDots(true);
+    const fetchDoctors = async () => {
+      try {
+        const res = await fetch('http://localhost:5000/api/doctors');
+        const data = await res.json();
+        setDoctors(data || []);
+      } catch (e) {
+        console.error('Error fetching doctors:', e);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchDoctors();
   }, []);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('Bangalore');
 
-  // Use TRPC to fetch doctors
-  const { data: doctors = [], isLoading } = trpc.doctors.getAll.useQuery();
 
   const popularSearches = [
     'Dermatologist', 'Pediatrician', 'Gynecologist', 'ENT', 'Cardiologist', 
@@ -53,59 +53,6 @@ export default function PractoHomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white animate-fade-in">
-      {/* Top Navbar */}
-      <header className="bg-white/95 backdrop-blur-md shadow-sm border-b sticky top-0 z-50 animate-slide-down">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-8">
-              <Link href="/" className="text-2xl font-bold text-practoBlue hover:scale-105 transition-transform duration-300 animate-pulse-gentle">
-                practo
-              </Link>
-              <nav className="hidden lg:flex space-x-8">
-                <Link href="/doctor-listing" className="text-gray-700 hover:text-practoBlue font-medium transition-all duration-300 hover:scale-105 relative group">
-                  Find Doctors
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-practoBlue transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-                <Link href="#" className="text-gray-700 hover:text-practoBlue font-medium transition-all duration-300 hover:scale-105 relative group">
-                  Video Consult
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-practoBlue transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-                <Link href="#" className="text-gray-700 hover:text-practoBlue font-medium transition-all duration-300 hover:scale-105 relative group">
-                  Surgeries
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-practoBlue transition-all duration-300 group-hover:w-full"></span>
-                </Link>
-              </nav>
-            </div>
-            
-            <div className="flex items-center space-x-6">
-              <div className="hidden md:flex items-center space-x-4">
-                <div className="relative group">
-                  <button className="text-gray-700 hover:text-practoBlue font-medium flex items-center transition-all duration-300 hover:scale-105">
-                    For Corporates
-                    <svg className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                </div>
-                <div className="relative group">
-                  <button className="text-gray-700 hover:text-practoBlue font-medium flex items-center transition-all duration-300 hover:scale-105">
-                    For Providers
-                    <svg className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <Link href="/admin" className="text-practoBlue hover:text-blue-700 font-medium transition-all duration-300 hover:scale-105">
-                Admin
-              </Link>
-              <button className="bg-practoBlue hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 btn-animate hover-glow">
-                Login / Signup
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Hero Section */}
       <section className="gradient-animate text-white py-24 relative overflow-hidden">
@@ -362,119 +309,6 @@ export default function PractoHomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-practoBlue text-white py-20 relative overflow-hidden">
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0">
-            {showFloatingDots && floatingDots.map((dot, i) => (
-              <div
-                key={i}
-                className="absolute w-1 h-1 bg-white rounded-full animate-float"
-                style={{
-                  left: dot.left,
-                  top: dot.top,
-                  animationDelay: dot.animationDelay,
-                  animationDuration: dot.animationDuration,
-                }}
-              ></div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
-            <div className="animate-slide-up">
-              <h3 className="text-3xl font-bold mb-6 bg-gradient-to-r from-practoBlue to-lightBlue bg-clip-text text-transparent">
-                Practo
-              </h3>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                Making healthcare accessible to everyone, everywhere.
-              </p>
-            </div>
-            
-            <div className="animate-slide-up" style={{animationDelay: '0.1s'}}>
-              <h4 className="text-xl font-semibold mb-6 text-lightBlue">For patients</h4>
-              <ul className="space-y-4 text-gray-400">
-                {['Search for doctors', 'Search for clinics', 'Search for hospitals', 'Book health checkup'].map((item, index) => (
-                  <li key={item}>
-                    <a 
-                      href="#" 
-                      className="hover:text-white transition-all duration-300 inline-flex items-center group hover:translate-x-2"
-                      style={{animationDelay: `${0.2 + (index * 0.1)}s`}}
-                    >
-                      <span className="w-1 h-1 bg-lightBlue rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="animate-slide-up" style={{animationDelay: '0.2s'}}>
-              <h4 className="text-xl font-semibold mb-6 text-lightBlue">For doctors</h4>
-              <ul className="space-y-4 text-gray-400">
-                {['Practo Profile', 'For Clinics', 'Ray by Practo', 'Practo Reach'].map((item, index) => (
-                  <li key={item}>
-                    <a 
-                      href="#" 
-                      className="hover:text-white transition-all duration-300 inline-flex items-center group hover:translate-x-2"
-                      style={{animationDelay: `${0.3 + (index * 0.1)}s`}}
-                    >
-                      <span className="w-1 h-1 bg-lightBlue rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="animate-slide-up" style={{animationDelay: '0.3s'}}>
-              <h4 className="text-xl font-semibold mb-6 text-lightBlue">More</h4>
-              <ul className="space-y-4 text-gray-400">
-                {['Help', 'Developers', 'Privacy Policy', 'Terms & Conditions'].map((item, index) => (
-                  <li key={item}>
-                    <a 
-                      href="#" 
-                      className="hover:text-white transition-all duration-300 inline-flex items-center group hover:translate-x-2"
-                      style={{animationDelay: `${0.4 + (index * 0.1)}s`}}
-                    >
-                      <span className="w-1 h-1 bg-lightBlue rounded-full mr-3 group-hover:scale-150 transition-transform duration-300"></span>
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="animate-slide-up" style={{animationDelay: '0.4s'}}>
-              <h4 className="text-xl font-semibold mb-6 text-lightBlue">Social</h4>
-              <div className="grid grid-cols-2 gap-4">
-                {['Facebook', 'Twitter', 'LinkedIn', 'YouTube'].map((social, index) => (
-                  <a 
-                    key={social}
-                    href="#" 
-                    className="w-12 h-12 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110 hover-glow group animate-scale-in"
-                    style={{animationDelay: `${0.5 + (index * 0.1)}s`}}
-                  >
-                    <span className="text-sm font-medium group-hover:text-lightBlue transition-colors duration-300">
-                      {social[0]}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          <div className="border-t border-gray-700 mt-16 pt-12 text-center text-gray-300 animate-slide-up" style={{animationDelay: '0.8s'}}>
-            <p className="text-lg">
-              &copy; 2025 Practo Clone. All rights reserved. Built with 
-              <span className="text-red-400 mx-2 animate-pulse-gentle">❤️</span> 
-              using Next.js & Tailwind CSS
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

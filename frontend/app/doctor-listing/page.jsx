@@ -78,38 +78,6 @@ export default function DoctorListingPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-8">
-              <Link href="/" className="text-2xl font-bold text-blue-600">
-                practo
-              </Link>
-              <nav className="hidden lg:flex space-x-8">
-                <Link href="/doctor-listing" className="text-gray-700 hover:text-blue-600 font-medium">
-                  Find Doctors
-                </Link>
-                <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium">
-                  Video Consult
-                </Link>
-                <Link href="#" className="text-gray-700 hover:text-blue-600 font-medium">
-                  Surgeries
-                </Link>
-              </nav>
-            </div>
-            
-            <div className="flex items-center space-x-6">
-              <Link href="/admin" className="text-blue-600 hover:text-blue-700 font-medium">
-                Admin
-              </Link>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
-                Login / Signup
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Search Section */}
       <section className="bg-white py-6 border-b">
@@ -142,7 +110,7 @@ export default function DoctorListingPage() {
                 </div>
               </div>
             </div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+            <button className="bg-practoBlue hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
               Search
             </button>
           </div>
@@ -211,7 +179,7 @@ export default function DoctorListingPage() {
           {/* Doctor Cards */}
           {loading ? (
             <div className="text-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-practoBlue mx-auto"></div>
               <p className="mt-4 text-gray-600">Loading doctors...</p>
             </div>
           ) : (
@@ -223,7 +191,7 @@ export default function DoctorListingPage() {
                       {/* Left: Doctor Image/Avatar */}
                       <div className="flex-shrink-0">
                         <div className="w-24 h-24 bg-blue-100 rounded-lg flex items-center justify-center">
-                          <span className="text-2xl font-semibold text-blue-600">
+                          <span className="text-2xl font-semibold text-practoBlue">
                             {doctor.name.split(' ').map((n) => n[0]).join('')}
                           </span>
                         </div>
@@ -232,7 +200,7 @@ export default function DoctorListingPage() {
                       {/* Middle: Doctor Info */}
                       <div className="flex-1">
                         <div className="mb-3">
-                          <h3 className="text-xl font-semibold text-blue-600 hover:text-blue-700 cursor-pointer mb-1">
+                          <h3 className="text-xl font-semibold text-practoBlue hover:text-blue-700 cursor-pointer mb-1">
                             {doctor.name}
                           </h3>
                           <p className="text-gray-700 mb-1">
@@ -269,11 +237,11 @@ export default function DoctorListingPage() {
                         <div className="space-y-3">
                           <Link
                             href={`/doctor/${doctor.id}`}
-                            className="block w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors text-center"
+                            className="block w-full bg-practoBlue hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors text-center"
                           >
                             Book Clinic Visit
                           </Link>
-                          <button className="w-full border border-blue-600 text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-semibold transition-colors">
+                          <button className="w-full border border-practoBlue text-practoBlue hover:bg-blue-50 px-6 py-3 rounded-lg font-semibold transition-colors">
                             Video Consult
                           </button>
                           <button className="w-full border border-gray-300 text-gray-700 hover:bg-gray-50 px-6 py-2 rounded-lg transition-colors text-sm">
@@ -298,7 +266,7 @@ export default function DoctorListingPage() {
                   setSelectedGender('');
                   setSelectedExperience('');
                 }}
-                className="text-blue-600 hover:text-blue-700 font-semibold"
+                className="text-practoBlue hover:text-blue-700 font-semibold"
               >
                 Clear all filters
               </button>
@@ -307,58 +275,6 @@ export default function DoctorListingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4 text-blue-400">Practo</h3>
-              <p className="text-gray-400 text-sm">
-                Making healthcare accessible to everyone, everywhere.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">For patients</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white">Search for doctors</a></li>
-                <li><a href="#" className="hover:text-white">Search for clinics</a></li>
-                <li><a href="#" className="hover:text-white">Search for hospitals</a></li>
-                <li><a href="#" className="hover:text-white">Book health checkup</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">For doctors</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white">Practo Profile</a></li>
-                <li><a href="#" className="hover:text-white">For Clinics</a></li>
-                <li><a href="#" className="hover:text-white">Ray by Practo</a></li>
-                <li><a href="#" className="hover:text-white">Practo Reach</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">More</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white">Help</a></li>
-                <li><a href="#" className="hover:text-white">Developers</a></li>
-                <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white">Terms & Conditions</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Social</h4>
-              <ul className="space-y-2 text-gray-400 text-sm">
-                <li><a href="#" className="hover:text-white">Facebook</a></li>
-                <li><a href="#" className="hover:text-white">Twitter</a></li>
-                <li><a href="#" className="hover:text-white">LinkedIn</a></li>
-                <li><a href="#" className="hover:text-white">YouTube</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
-            <p>&copy; 2025 Practo Clone. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import '../globals.css';
 import React from 'react';
 import { TRPCProvider } from './_trpc/Provider';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 export const metadata = {
   title: 'Practo Clone - Your Home for Health',
@@ -20,7 +22,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className="font-sans bg-gray-50 text-darkText antialiased">
         <TRPCProvider>
+          <NavBar />
           {children}
+          <Footer />
         </TRPCProvider>
       </body>
     </html>
