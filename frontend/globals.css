@@ -30,7 +30,7 @@ html {
 }
 
 body {
-  @apply font-sans bg-white text-darkText;
+  @apply text-darkText;
   animation: fadeIn 0.5s ease-in;
 }
 

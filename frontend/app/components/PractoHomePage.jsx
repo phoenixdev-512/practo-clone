@@ -1,10 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { trpc } from '../../src/utils/trpc';
 
 export default function PractoHomePage() {
+  // Fix hydration error: floating dots state
+  const [floatingDots, setFloatingDots] = useState([]);
+  const [showFloatingDots, setShowFloatingDots] = useState(false);
+
+  useEffect(() => {
+    // Only run on client
+    const dots = Array.from({ length: 20 }).map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animationDelay: `${Math.random() * 5}s`,
+      animationDuration: `${3 + Math.random() * 4}s`,
+    }));
+    setFloatingDots(dots);
+    setShowFloatingDots(true);
+  }, []);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('Bangalore');
 
@@ -352,15 +367,15 @@ export default function PractoHomePage() {
         {/* Animated background pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <div 
+            {showFloatingDots && floatingDots.map((dot, i) => (
+              <div
                 key={i}
                 className="absolute w-1 h-1 bg-white rounded-full animate-float"
                 style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 5}s`,
-                  animationDuration: `${3 + Math.random() * 4}s`
+                  left: dot.left,
+                  top: dot.top,
+                  animationDelay: dot.animationDelay,
+                  animationDuration: dot.animationDuration,
                 }}
               ></div>
             ))}
