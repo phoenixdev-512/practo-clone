@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet" 
         />
       </head>
-      <body className="font-sans bg-gray-50 text-darkText antialiased">
+      <body className="font-sans bg-gray-50 antialiased">
         <TRPCProvider>
           <NavBar />
           {children}
